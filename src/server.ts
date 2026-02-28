@@ -41,7 +41,7 @@ app.use(
 app.use((req: Request, res: Response, next: NextFunction) => {
   angularApp
     .handle(req)
-    .then((response) =>
+    .then((response: Awaited<ReturnType<AngularNodeAppEngine['handle']>>) =>
       response ? writeResponseToNodeResponse(response, res) : next(),
     )
     .catch(next);
